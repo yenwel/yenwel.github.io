@@ -1,0 +1,417 @@
+<html>
+    <head>
+        <title>Jan Vandepitte</title>
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="reveal.js/css/theme/solarized.css">
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+		<style>
+		.myFace 
+		{
+    		width: 200px;
+    		height: 200px;
+    		border: 1px solid black;
+    		border-radius: 100px;
+    		background-image: url('ikke.jpg');
+    		background-size: contain;
+    		float: left;   
+		}
+		</style>
+		<link rel="icon" href="favicon.ico">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                	<h2>Welcome!</h2>
+                	<h3>This is my personal webpage</h3>
+                	<div class="myFace"></div>
+                	<p>
+                		My name is ir. Jan Vandepitte and I work for Ghent University <a href ="http://www.buitenpraktijk.ugent.be/v2/home/"> @ the Department of Reproduction, Obstetrics and Herd Health for the Bovine Buitenpraktijk+ team </a>. I dabble in statistics, programming and animal science.
+                	</p>
+					<p>At the moment I am <a href="#/work-for-gpluse">working</a> on a European project <a href="http://www.gpluse.eu/">GplusE</a> that tries to find the link between the Genotype and the Environmental factors of dairy cows.
+					</p>
+					<p>
+                		<small>
+                			connect with me on Linkedin:
+                			<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+							<script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/jan-vandepitte-90375631" data-format="click" data-related="false" data-text="Jan Vandepitte">
+							</script>.
+						</small>
+					</p>
+					<p>
+						<small>This website is built using <a href="http://lab.hakim.se/reveal-js/#">reveal.js</a>.</small> 
+					</p>
+                </section>
+                <section>
+                	<section id="work-for-gpluse">
+                		<img src="http://www.gpluse.eu/wp-content/themes/EU-PLF/images/testata.jpg" alt="GplusE">
+                		<h2>My work for GplusE</h2>
+	                	<p>
+	                		<ul>
+                                <li>For <a href="http://www.gpluse.eu/index.php/project/work-projects/wp3/">WP3</a> I <a href="#/WP3shiny">explored the design</a> of the experiments across different phenotypes
+                                </li>
+	                			<li><a href="https://bitbucket.org/bovianalytics/">Bovianalytics bitbucket source repo</a>. This <a href="#/bitbucket">repo</a> includes
+	                				<ul>
+	                					<li>
+	                						<a href="#/r-package">an R-package</a>
+	                					</li>
+	                					<li>
+	                						SAS code
+	                					</li>
+	                					<li>
+	            							matlab code
+	                					</li>
+	                					<li>
+	                						etc...
+	                					</li>
+	                				</ul>
+	                			</li>
+                				<li><a href="#/toolkit">GplusE toolkit executables</a>.</li>
+                			</ul>
+                		</p>
+                	</section>
+                    <section id ="WP3shiny">
+                        <h3>Data exploration of WP3 data using an <a href="https://bovi-analytics.shinyapps.io/GplusEdata/">R shiny app</a></h3>
+                        <iframe src="https://bovi-analytics.shinyapps.io/GplusEdata/" width="100%" height ="75%"></iframe>
+                        <p>Additional data exploration and analysis using <a href ="DataexplorationGplusE.html">Rmarkdown </a></p>
+                    </section>
+                	<section id="bitbucket" >
+                		<h3>Bitbucket explanation</h3>
+                		<ul>
+                			<li>
+                				You can use the <a href="https://www.sourcetreeapp.com/">sourcetree app</a> from atlassian to clone the code from the repositories of bitbucket (also an atlassian product). Since the repo's are git any <a href="https://git-scm.com/downloads/guis">git client</a> will do but sourcetree integrates very well with the bitbucket site.
+                			</li>
+                			<li>
+                				The code is viewable via the source page e.g. <a href ="https://bitbucket.org/bovianalytics/wp3data/src" 
+                				>https://bitbucket.org/bovianalytics/wp3data/src</a>
+                			</li>
+                		</ul>
+                	</section>
+                	<section id="r-package">
+                		<h3>R package explanation</h3>
+<pre><code class="r">if(!require("APIhelpers"))
+{
+  if(!require("devtools"))
+  {
+    install.packages("devtools")
+    library("devtools")
+  }
+  devtools::install_bitbucket("bovianalytics/r-package-ddw-api", ref = "R-package", subdir = "API-helpers", auth_user = "bitbucketusername", password = "bitbucketpassword")
+  library(APIhelpers)
+}
+getPass()
+data &lt;- getAllGplusEFiles()
+</code></pre>
+					<p>
+						<small>
+							Above code will
+							<ul>
+								<li>
+									Download install the R-package from bitbucket using the <a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools package</a> (and install devtools itself if necessary)
+								</li>
+								<li>
+									Ask for your username and password for <a href="https://dairydatawarehouse.com/">DDW</a> (alternatively in non interactive code you can use the function setLogin())
+								</li>
+								<li>
+									download all WP3 data and put it into list data
+								</li>
+							</ul>
+						</small>
+					</p>
+                	</section>
+                	<section id="toolkit">
+            			<h3>GplusE toolkit executables</h3>
+        				<p>
+        					The <a href="GplusEToolkit.zip">GplusE toolkit</a> is composed of the following components
+        					<ul>
+        						<li><a href="#/loadwebapi.exe">Loadwebapi.exe</a>: downloads the data for WP3</li>
+        						<li><a href="#/cowstatemachine.exe">CowStateMachine.exe</a>: merges the different phenotype files into one design </li>
+                                <li><a href="#/scripts">scripts</a> folder: allows to plug in custom scripts (e.g. to split or aggregate files)</li>
+        						<li><a href="#/gplusetoolkitbootstrapper.bat">GplusEToolKitBootstrapper.bat</a>: bootstraps the whole process</li>
+        					</ul>
+        				</p>
+            		</section>
+            		<section id="loadwebapi.exe">
+            			<h4>Loadwebapi.EXE</h4>
+                        <small>
+                            <p>
+                            This executable has four parameters:
+                            </p>
+                            <p>
+                                <ol>
+                                    <li>"username" for DDW</li>
+                                    <li>"password" for DDW</li>
+                                    <li>"select" a number to select:
+                                        <ol>
+                                            <li>GplusE WP3 data: "1"</li>
+                                            <li>Herd level KPI: "2"</li>
+                                            <li>individual Herd data: "3"</li>
+                                        </ol> 
+                                    </li>
+                                    <li>"herd": required in case of the downloading the herd data</li>
+                                </ol>
+                            </p>
+                            <p>
+                                These parameters can be passed to the program in three manners:
+                            </p>
+                            <p>                                
+                                <ol>
+                                    <li>First it will look into <a href="#/loadwebapi.exe.config">Loadwebapi.exe.config</a> to the appSettings section</li>
+                                    <li>Next it will look at parameters passed on the command line (e.g. MS DOS)
+                                        <pre><code class="dos hljs">
+Loadwebapi.exe ddwuser ddwpass 3 17
+                                        </code></pre> 
+                                    </li>
+                                    <li>Finally it will ask for them directly in the program on the console</li>
+                                </ol>
+                            </p>
+                        </small>
+            		</section>
+                    <section id="loadwebapi.exe.config">
+                        <h4>Example configuration of loadwebapi:</h4>
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;startup&gt;
+    &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" /&gt;
+  &lt;/startup&gt;
+  &lt;appSettings&gt;
+    &lt;add key="username" value="ddwuser" /&gt;
+    &lt;add key="password" value="ddwpass" /&gt;
+    &lt;add key="select" value="1" /&gt;
+  &lt;/appSettings&gt;
+&lt;/configuration&gt;
+</code></pre>
+                    </section>
+            		<section id="cowstatemachine.exe">
+            			<h4>CowStateMachine.EXE</h4>
+                        <small>
+                            <p>
+                                Going to the <a href="#/WP3shiny">shiny app that explores the data of WP3</a> one can go to the "design DIM vs interbull" tabpage and clicks throught the different phenotypes collected. One can note that the experimental designs of these different phenotypes (and even amongst countries) is very different. Therefore it is a serious task to merge these different designs to do any analysis. For this purpose the cow state machine was developed based on the theories and practices of <a href="http://dsg.uwaterloo.ca/ddbms/publications/web/vldb03-178.pdf">sliding windows</a>, <a href="https://en.wikipedia.org/wiki/Event-driven_finite-state_machine">state machines</a>, <a href="http://martinfowler.com/eaaDev/EventSourcing.html">event sourcing</a> and the <a href="https://youtu.be/Cym4TZwTCNU?t=18m33s">Datomic database</a>. As of now it is a purely sequential and deterministic implementation but it is imaginable to implement this concurrently and non deterministic e.g. using an <a href="http://akka.io/">actor framework</a>.
+                            </p>
+                            <p>
+                                The implementation was done for simplicity reasons as a .NET console application that can be run locally given the following reasons:
+                                <ul>
+                                    <li>
+                                        The small size of the dataset of WP3. Data of the size <a href="http://www.r-bloggers.com/handling-large-datasets-in-r/">up to 10GB</a> can be analysed locally.
+                                    </li>
+                                    <li>
+                                        The diversity of statistical programs used by the GplusE scientist (R, SAS, matlab, MySQL,...?)
+                                    </li>
+                                    <li>
+                                        Data sharing considerations that plague projects with several stakeholders
+                                    </li>
+                                </ul>
+                            </p>
+                        </small>                        
+        			</section>  
+                    <section id="cowstatemachine.rules">
+                        <h4>The rules governing the CowStateMachine.EXE</h4>
+                        <small>
+                            <ol>
+                                <li>
+                                    The program will load files that are to be found in the GplusE subdirectory and where the filename ends with "with-header.csv". This is the default location where Loadwebapi.exe will download the WP3 data. Other files that are placed or generated in the folder and abide to these conventions will also be picked up.
+                                </li>
+                                <li>
+                                    These files must be comma seperated (using ;) and without quotes around character strings. The file must have a header row containing the column names. There must an <bold>InterbullNumber</bold>
+                                </li>
+                                <li>
+                                    There must be an Animal-with-header.csv file containing all animals and their <bold>InterbullNumber</bold>
+                                </li>
+                                <li>
+                                    There must be an Calving-with-header.csv file containing all calvings of the animals and their <bold>LactationNumber</bold>
+                                </li>
+                                <li>
+                                    Based on the fact files a history is built up from days in milk (<bold>DIM</bold>) 1 to 50 for each cow. The facts in the files are considered mutable or immutable in their timeline according to <a href="#/cowstatemachine.history">these</a> rules.
+                                </li>
+                                <li>
+                                    The data is written to one cowEventFile.csv file for day 1 to 50. The design of this date is <a href="#/cowstatemachine.exe.config">configurable</a>.
+                                </li>
+                            </ol>
+                        </small>
+                    </section>   
+                    <section id="cowstatemachine.history">
+                        <h4>Rules applied while building the cow history</h4>
+                        <small>
+                            <ol>
+                                <li>
+                                    If the header of the fact file contains no DIM the facts in the file will be considered immutable and be copied across all days.</li>
+                                <li>
+                                    If the header of the fact file contains DIM the facts in the file will be considered mutable (events) and will be copied using a sliding window across the timeline. By default the size of this sliding window is infinite (50 days). This is <a href="#/cowstatemachine.exe.config">configurable</a>. If the sliding window size is reduced the events will be copied forward and then backwards in time untill 
+    <pre><code class="lisp">(itIsTrueThat
+    (isLessThan
+        (theDifferenceBetween
+            (timeOf
+                theEvent
+            )
+            (timeOf
+                now
+            )
+        )
+        theMaximumSlidingWindowSize
+    )
+)</code></pre> 
+                                    The above code is written as an <a href="https://en.wikipedia.org/wiki/S-expression">S-expression</a> so it is also interpretable by domain experts without prior programming experience.              
+                                </li>
+                            </ol>
+                        </small>
+                    </section>
+                    <section id ="cowstatemachine.exe.config">
+                         <h4>Example configuration of cowstatemachine:</h4>
+                         The configuration below will generate a event timeline with a maximum sliding window of 4 and output a history of day 14 and 35.
+<pre><code class="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;startup&gt;
+    &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" /&gt;
+  &lt;/startup&gt;
+  &lt;appSettings&gt;
+    &lt;add key="maxSlidingWindowSize" value="4" /&gt;
+    &lt;add key="design" value="14,35" /&gt;
+  &lt;/appSettings&gt;
+&lt;/configuration&gt;</code></pre>
+                    </section>           
+                    <section id="scripts">
+                        <h4>scripts</h4>
+                        <p>
+                            In the scripts folder an example R-script "splitData.R" that splits the Diagnose and ClinicalRegistration files in seperate files so they can be independently merged with the timeline.  
+                        </p>
+<pre><code class="r">ClinicalRegistration.with.header &lt;- read.csv(paste(getwd(),"/GplusE/ClinicalRegistration-with-header.csv", sep=""), sep=";")
+Diagnose.with.header &lt;- read.csv(paste(getwd(),"/GplusE/Diagnose-with-header.csv", sep=""), sep=";")
+Diagnose.with.header.split &lt;- split(Diagnose.with.header, Diagnose.with.header$Diagnose)
+for ( name in names(ClinicalRegistration.with.header.split) )
+{
+  write.table(ClinicalRegistration.with.header.split[[name]], paste(paste(getwd(),"/GplusE/ClinicalRegistration",sep=""),name,"with-header.csv",sep="-"),quote = FALSE,row.names=FALSE,sep = ";")
+}
+for ( name in names(Diagnose.with.header.split) )
+{
+  write.table(Diagnose.with.header.split[[name]], paste(paste(getwd(),"/GplusE/Diagnose",sep=""),name,"with-header.csv",sep="-"),quote = FALSE,row.names=FALSE,sep = ";")
+}</code></pre>
+                    </section>
+            		<section id="gplusetoolkitbootstrapper.bat">
+        				<h4>GplusEToolKitBootstrapper.BAT</h4>
+                        <p>
+                            In the toolkit is a simple batchscript included to bootstrap the following process:
+                        </p>
+                        <ol>
+                            <li>Execute Loadwebapi.exe to download the data</li>
+                            <li>Run the Rscript to split the data files</li>
+                            <li>Run the CowStateMachine.exe to merge the data</li>
+                        </ol>
+                        <p>
+                            By putting "REM" before a line it will be commented out and the line will not be executed 
+                        </p>
+                         <pre><code class="dos hljs">REM the line below is commented out so the data won't be downloaded again
+REM Loadwebapi.exe ddwuser@acme.gov ddwpass 1
+"C:\Program Files\R\R-3.1.3\bin\Rscript.exe" scripts\splitData.R
+CowStateMachine.exe</code></pre> 
+        			</section>
+                </section>
+                <section>
+                	<h1>quotes</h1>
+                	<section>
+                		<p>
+                			<blockquote cite="https://twitter.com/headinthebox/status/239008488444018688">
+                                &ldquo;Functional Hacker := Think like a fundamentalist, code like a pragmatist.&rdquo;
+							</blockquote> 
+							~ Erik Meijer
+							@headinthebox
+						</p>
+					</section>
+                    <section>
+                        <p>
+                            <blockquote cite="http://www.reactivemanifesto.org/">
+                                <small>
+                                    &ldquo;Large systems are composed of smaller ones and therefore depend on the Reactive properties of their constituents. This means that Reactive Systems apply design principles so these properties apply at all levels of scale, making them composable. The largest systems in the world rely upon architectures based on these properties and serve the needs of billions of people daily. It is time to apply these design principles consciously from the start instead of rediscovering them each time.&rdquo;
+                                </small>
+                            </blockquote> 
+                            ~ The Reactive Manifesto
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="https://valdhaus.co/writings/simplicity-is-key/">
+                                <small>
+                                    &ldquo;Simplicity is hard work. But, there's a huge payoff. The person who has a genuinely simpler system - a system made out of genuinely simple parts, is going to be able to affect the greatest change with the least work. He's going to kick your ass. He's gonna spend more time simplifying things up front and in the long haul he's gonna wipe the plate with you because he'll have that ability to change things when you're struggling to push elephants around.&rdquo;
+                                </small>
+                            </blockquote>
+                            ~ Rich Hickey, Creator of the Clojure programming language
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="http://www.writeups.org/fiche.php?id=5380">
+                                &ldquo;I'm teaching you things all the time. You might not be learning them, of course&rdquo;
+                            </blockquote>
+                            ~ Lu-Tze, The sweeper - Discworld - Terry Pratchett
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying">
+                                <small>
+                                    &ldquo;One of the most useful things I learned in all this was that many of the things we were building had a very simple concept at their heart: the log. Sometimes called write-ahead logs or commit logs or transaction logs, logs have been around almost as long as computers and are at the heart of many distributed data systems and real-time application architectures.&rdquo;
+                                </small>
+                            </blockquote> 
+                            ~ Jay Kreps, Linkedin
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="http://www.enterpriseintegrationpatterns.com/ramblings/89_zombies.html">
+                                &ldquo;If you never kill anything, you will live among zombies. And they will eat your brain.&rdquo;
+                            </blockquote> 
+                            ~ Gregor Hohpe - Enterprise Integration patterns Ramblings on the subject of legacy software
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="http://www.enterpriseintegrationpatterns.com/ramblings/30_configure.html">
+                                &ldquo;When you make a system configurable I think it is useful to ask yourself whether you are really just configuring or whether you are programming at a high level of abstraction.&rdquo;
+                            </blockquote> 
+                            ~ Gregor Hohpe - Enterprise Integration patterns Ramblings on the subject of configuration
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <blockquote cite="http://zeroturnaround.com/rebellabs/why-the-debate-on-object-oriented-vs-functional-programming-is-all-about-composition/">
+                                <small>
+                                    &ldquo;The real key, I think, is that the composability afforded by the functional design approach means that the same approach can be used for both the highest levels of abstraction and the lowest level-behavior is described by functions all the way down (many machine instructions can also be represented as functions).&rdquo;
+                                </small>
+                            </blockquote> 
+                            ~ Erkki Lindpere - Why the debate on Object-Oriented vs Functional Programming is all about composition
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="reveal.js/lib/js/head.min.js"></script>
+        <script src="reveal.js/js/reveal.js"></script>
+        <script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					//{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }//,
+					//{ src: 'plugin/zoom-js/zoom.js', async: true },
+					//{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+        </script>
+    </body>
+</html>
